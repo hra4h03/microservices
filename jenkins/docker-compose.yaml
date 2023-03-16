@@ -10,10 +10,10 @@ services:
       - 50000:50000
     container_name: jenkins
     volumes:
-      - ./jenkins/mounts/jenkins_compose/jenkins_configuration:/var/jenkins_home
-      - ./jenkins/mounts/var/run/docker.sock:/var/run/docker.sock
+      - ./mounts/jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - ./mounts/var/run/docker.sock:/var/run/docker.sock
     networks:
-      - nestjs-network
+      - local-network
   agent:
     image: jenkins/ssh-agent:jdk11
     privileged: true
@@ -25,6 +25,6 @@ services:
       - JENKINS_AGENT_SSH_PUBKEY=$JENKINS_AGENT_SSH_PUBKEY
 
 networks:
-  nestjs-network:
-    name: nestjs-network
+  local-network:
+    name: local-network
     external: true

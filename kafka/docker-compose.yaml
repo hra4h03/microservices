@@ -7,11 +7,11 @@ services:
     ports:
       - "2181:2181"
     volumes:
-      - ./kafka/mounts/zookeeper_data:/bitnami
+      - ${ROOT_PATH}/mounts/zookeeper_data:/bitnami
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     networks:
-      - nestjs-network
+      - local-network
 
   kafka:
     image: docker.io/bitnami/kafka:3.3
@@ -19,7 +19,7 @@ services:
       - "9092:9092"
       - "9093:9093"
     volumes:
-      - ./kafka/mounts/kafka_data:/bitnami
+      - ${ROOT_PATH}/mounts/kafka_data:/bitnami
     expose:
       - "9092"
     environment:
@@ -32,7 +32,7 @@ services:
     depends_on:
       - zookeeper
     networks:
-      - nestjs-network
+      - local-network
 
   kafka-ui:
     image: provectuslabs/kafka-ui
@@ -46,9 +46,9 @@ services:
     depends_on:
       - kafka
     networks:
-      - nestjs-network
+      - local-network
 
 networks:
-  nestjs-network:
-    name: nestjs-network
+  local-network:
+    name: local-network
     external: true

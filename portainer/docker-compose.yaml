@@ -10,13 +10,13 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./portainer/mounts/data:/data
+      - ${ROOT_PATH}/mounts/data:/data
     ports:
       - 9000:9000
     networks:
-      - nestjs-network
+      - local-network
 
 networks:
-  nestjs-network:
-    name: nestjs-network
+  local-network:
+    name: local-network
     external: true

@@ -8,11 +8,11 @@ services:
       - "6379:6379"
     command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
     volumes:
-      - ./redis/mounts/data:/data
+      - ./mounts/data:/data
     networks:
-      - nestjs-network
+      - local-network
 
 networks:
-  nestjs-network:
-    name: nestjs-network
+  local-network:
+    name: local-network
     external: true
