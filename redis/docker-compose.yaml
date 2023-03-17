@@ -8,7 +8,17 @@ services:
       - "6379:6379"
     command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
     volumes:
-      - ./mounts/data:/data
+      - ${ROOT_PATH}/mounts/data/redis:/data
+    networks:
+      - local-network
+  redisinsight:
+    image: redislabs/redisinsight:ri-trusted-origins
+    ports:
+      - 8001:8001
+    environment:
+      - RITRUSTEDORIGINS=https://redis.network.com
+    volumes:
+      - ${ROOT_PATH}/mounts/redisinsight:/db
     networks:
       - local-network
 

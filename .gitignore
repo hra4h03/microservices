@@ -1,4 +1,7 @@
-*/mounts/*
+kafka/mounts/*
+jenkins/mounts/*
+redis/mounts/*
+portainer/mounts/*
 .idea
 .vscode
 **/.env

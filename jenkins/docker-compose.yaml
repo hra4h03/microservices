@@ -10,8 +10,8 @@ services:
       - 50000:50000
     container_name: jenkins
     volumes:
-      - ./mounts/jenkins_compose/jenkins_configuration:/var/jenkins_home
-      - ./mounts/var/run/docker.sock:/var/run/docker.sock
+      - ${ROOT_PATH}/mounts/jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - ${ROOT_PATH}/mounts/var/run/docker.sock:/var/run/docker.sock
     networks:
       - local-network
   agent:
