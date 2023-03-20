@@ -9,7 +9,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ${ROOT_PATH}/mounts/etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ${ROOT_PATH}/mounts/etc/nginx:/etc/nginx/
       - ${ROOT_PATH}/mounts/opt/ssl:/opt/ssl/
     networks:
       - local-network
