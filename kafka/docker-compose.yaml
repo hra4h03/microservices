@@ -4,6 +4,7 @@ services:
   # kafka config
   zookeeper:
     image: docker.io/bitnami/zookeeper:3.8
+    container_name: zookeeper
     ports:
       - "2181:2181"
     volumes:
@@ -15,6 +16,7 @@ services:
 
   kafka:
     image: docker.io/bitnami/kafka:3.3
+    container_name: kafka
     ports:
       - "9092:9092"
       - "9093:9093"

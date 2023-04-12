@@ -6,7 +6,7 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - ${ROOT_PATH}/mounts/prometheus:/etc/prometheus
+      - ${ROOT_PATH}/mounts/etc/prometheus:/etc/prometheus
       - ${ROOT_PATH}/mounts/prometheus-data:/prometheus
     command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yaml
     networks:
