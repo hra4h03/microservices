@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.30.3
+    ports:
+      - 9090:9090
+    volumes:
+      - ${ROOT_PATH}/mounts/prometheus/etc/prometheus:/etc/prometheus
+      - ${ROOT_PATH}/mounts/prometheus/prometheus-data:/prometheus
+    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yaml
+    networks:
+      - local-network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3030:3000
+    restart: unless-stopped
+    volumes:
+      - ${ROOT_PATH}/mounts/grafana/etc/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ${ROOT_PATH}/mounts/grafana/var/lib/grafana:/var/lib/grafana
+    networks:
+      - local-network
+
+networks:
+  local-network:
+    name: local-network
+    external: true
